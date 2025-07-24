@@ -20,7 +20,7 @@ def get_recent_submission(user):
     }
 
     res = req.post(request_url, json=user_data).json()
-
+    print("Got this response for submission:", res)
     return res["data"]["recentAcSubmissionList"][0]
 
 
@@ -30,15 +30,15 @@ def get_recent_submission_code(submission_id):
 
     submission_data = {
         "query": code_query,
-        "variables" = {"submissionId" : submission_id}
+        "variables": {"submissionId" : submission_id}
     }
 
     cookies = {
         "LEETCODE_SESSION": user_info["session_id"]
     }
 
-    res = req.post(url, json=submission_data).json()
-
+    res = req.post(request_url, cookies=cookies, json=submission_data).json()
+    print("Got this response for code:", res)
     return res["data"]["submissionDetails"]["code"]
 
 def write_code_to_file(title, id):

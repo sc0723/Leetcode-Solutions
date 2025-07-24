@@ -9,7 +9,7 @@ query recentAcSubmissions($username: String!) {
 
 recent_submission_code = """
 query submissionDetails($submissionId: Int!) {
-    submissionDetails(submissionID: $submissionId) {
+    submissionDetails(submissionId: $submissionId) {
         code
     }
 }
