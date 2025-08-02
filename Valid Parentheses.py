@@ -2,20 +2,22 @@ class Solution:
     def isValid(self, s: str) -> bool:
         if len(s) % 2 != 0:
             return False
+        
         stack = []
-        pairs = {')' : '(', '}' : '{', ']' : '['}
+        pairs = {'}' : '{', ')' : '(', ']': '['}
 
         for c in s:
             if c in pairs.values():
                 stack.append(c)
             else:
                 if stack:
-                    top = stack.pop()
-                    if top != pairs[c]:
+                    recent_value = stack.pop()
+                    if pairs[c] != recent_value:
                         return False
                 else:
-                    return False 
+                    return False
         
         if stack:
             return False
+        
         return True
